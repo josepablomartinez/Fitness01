@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import App from '../components/App'
 
+
 const server = express();
 server.use(express.static('dist'));
 
@@ -12,7 +13,7 @@ server.get('/', (req, res) => {
     res.send(`
     <html>
       <head>
-        <title>Sample React App</title>
+        <title>Fitness App</title>
       </head>
       <body>
         <div id="mountNode">${initialMarkup}</div>
