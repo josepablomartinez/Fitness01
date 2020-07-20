@@ -1,5 +1,5 @@
 import React from 'react';
-import Dashboard from './Dashboard'
+import Dashboard from './DashboardComponent'
 
 
 // export default function App() {
@@ -13,20 +13,9 @@ import Dashboard from './Dashboard'
 //     );
 // }
 
-// class App extends App.Component {
-//     constructor(props) {
-//         super(props)
-//         this.state = {
-//             date: new Date().getDate(),
-//             month: new Date().getMonth()
-//         }
-//     }
-// }
-
 
 const Fitness = () => {
     return <Dashboard date={new Date().getDate()} month={new Date().getMonth()} />
 }
-
 
 export default Fitness
