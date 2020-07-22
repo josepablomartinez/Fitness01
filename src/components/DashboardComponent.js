@@ -10,10 +10,12 @@ const Dashboard = props => {
     
     const [activeComponent, setActiveComponent] = useState("")
     const [calorias, setCalories] = useState(0)
+    const [puntaje, setPuntaje] = useState(0)
     
 
-    const actualizarCalorias = (cal) => {
+    const actualizarCalorias = (cal, pts) => {
         setCalories(cal);
+        setPuntaje(pts)
         setActiveComponent("dashboard")
     }
 
@@ -37,7 +39,7 @@ const Dashboard = props => {
             {activeComponent == "dieta" ? <Dieta update={actualizarCalorias}/> : 
             activeComponent == "ejercisio" ? <Dieta/>  : 
             activeComponent == "descanso" ? <Dieta/>  :            
-            <ResumenDashboard date={props.date} month={props.month} calorias={calorias}/>}
+            <ResumenDashboard date={props.date} month={props.month} calorias={calorias} puntos={puntaje}/>}
             
         </div>
     );
@@ -46,7 +48,7 @@ const Dashboard = props => {
 const ResumenDashboard = props => {
     return (
         <div>
-            Mi puntaje del dia {props.date} de {props.month} es: 100
+            Mi puntaje del dia {props.date} de {props.month} es: {props.puntos}
             <br></br>
             Calories: {props.calorias}
         </div>
