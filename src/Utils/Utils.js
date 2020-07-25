@@ -1,4 +1,4 @@
-const CalculosDieta = {
+const CalculoPuntaje = {
 
     //Carbohidratos: 50% - 55%
     //Proteínas: 10% - 15%
@@ -35,7 +35,27 @@ const CalculosDieta = {
         }
 
         return puntaje
+    },
+
+    puntajeDescando: (puntos, horasDescanso) => {
+        let puntaje = 0;
+        if (horasDescanso > 390)
+            puntaje++;
+        if (horasDescanso > 450)
+            puntaje++;
+        if (horasDescanso >= 480)
+            puntaje++;
+
+        if (puntos > 80)
+            puntaje++;
+
+        return puntaje
+
     }
 }
 
-export default CalculosDieta
+
+export default CalculoPuntaje 
+
+
+

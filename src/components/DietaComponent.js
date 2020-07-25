@@ -1,14 +1,14 @@
 import React from 'react'
-import CalculosDieta from '../Utils/Utils'
+import CalculoPuntaje from '../Utils/Utils'
 
 class Dieta extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
         this.props.update(event.target["calories"].value,         
-            CalculosDieta.distribucionEnergica(parseInt(event.target["carbs"].value), parseInt(event.target["proteins"].value), parseInt(event.target["fat"].value), parseInt(event.target["sugar"].value)) + 
-            CalculosDieta.conteoCalorias(parseInt(event.target["calories"].value))
-            )     
+            CalculoPuntaje.distribucionEnergica(parseInt(event.target["carbs"].value), parseInt(event.target["proteins"].value), parseInt(event.target["fat"].value), parseInt(event.target["sugar"].value)) + 
+            CalculoPuntaje.conteoCalorias(parseInt(event.target["calories"].value))
+        )     
 
     };
     render() {

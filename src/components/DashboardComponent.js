@@ -1,10 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import Dieta from './DietaComponent'
+import Descanso from './DescansoComponent'
 
 const buttonStyle = {
         margin: '10px',
 };
+
+// function previousPoints(value) {
+//     const ref = useRef();
+//     useEffect(() => {
+//       ref.current = value;
+//     });
+//     return ref.current;
+// }
 
 const Dashboard = props => {
     
@@ -12,10 +21,20 @@ const Dashboard = props => {
     const [calorias, setCalories] = useState(0)
     const [puntaje, setPuntaje] = useState(0)
     
+    const refPuntaje = useRef();
+    useEffect(() => {
+        refPuntaje.current = puntaje;
+    });
+    
 
     const actualizarCalorias = (cal, pts) => {
         setCalories(cal);
         setPuntaje(pts)
+        setActiveComponent("dashboard")
+    }
+
+    const actualizarPuntaje = (pts) => {
+        setPuntaje(refPuntaje.current + pts)
         setActiveComponent("dashboard")
     }
 
@@ -37,8 +56,8 @@ const Dashboard = props => {
                     </Button></div>
             </div>
             {activeComponent == "dieta" ? <Dieta update={actualizarCalorias}/> : 
-            activeComponent == "ejercisio" ? <Dieta/>  : 
-            activeComponent == "descanso" ? <Dieta/>  :            
+            activeComponent == "ejercisio" ? <Dieta/> :
+            activeComponent == "descanso" ? <Descanso update={actualizarPuntaje}/>  :             
             <ResumenDashboard date={props.date} month={props.month} calorias={calorias} puntos={puntaje}/>}
             
         </div>
