@@ -14,7 +14,7 @@ import Dashboard from './DashboardComponent'
 // }
 
 
-const Fitness = () => {
+const Fitness = () => {  
     return <Dashboard date={new Date().getDate()} month={new Date().getMonth()} />
 }
 

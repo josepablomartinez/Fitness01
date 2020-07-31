@@ -1,7 +1,12 @@
 import React, {useState, useRef, useEffect} from 'react';
-import Button from '@material-ui/core/Button';
+
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
 import Dieta from './DietaComponent'
 import Descanso from './DescansoComponent'
+import { withStyles } from '@material-ui/core/styles/withStyles'
+
+import * as Constants from '../Utils/const'
 
 const buttonStyle = {
         margin: '10px',
@@ -15,6 +20,7 @@ const buttonStyle = {
 //     return ref.current;
 // }
 
+
 const Dashboard = props => {
     
     const [activeComponent, setActiveComponent] = useState("")
@@ -25,8 +31,9 @@ const Dashboard = props => {
     useEffect(() => {
         refPuntaje.current = puntaje;
     });
-    
 
+    const classes = Constants.useStyles();
+    
     const actualizarCalorias = (cal, pts) => {
         setCalories(cal);
         setPuntaje(pts)
@@ -39,28 +46,28 @@ const Dashboard = props => {
     }
 
     return (
-        <div>            
-            <div id="botonera" >
-                <div>
-                    <Button style={buttonStyle} variant="contained" color="primary" 
-                    onClick={() => setActiveComponent("dieta")}>
-                        Agregar dieta
-                    </Button>
-                <Button style={buttonStyle} variant="contained" color="primary"
-                onClick={() => setActiveComponent("ejercisio")}>
-                    Agregar ejercisio
-                    </Button>
-                <Button  style={buttonStyle} variant="contained" color="primary"
-                onClick={() => setActiveComponent("descanso")}>
-                    Agregar descanso
-                    </Button></div>
-            </div>
-            {activeComponent == "dieta" ? <Dieta update={actualizarCalorias}/> : 
-            activeComponent == "ejercisio" ? <Dieta/> :
-            activeComponent == "descanso" ? <Descanso update={actualizarPuntaje}/>  :             
-            <ResumenDashboard date={props.date} month={props.month} calorias={calorias} puntos={puntaje}/>}
-            
-        </div>
+        <Grid container className={classes.root} spacing={2}>
+            <Grid item xs={12}>
+                <Grid container justify="center" direction="row" aligntems="center" spacing={10}>                    
+                    <Grid item><Button  style={buttonStyle} variant="contained" color="primary" 
+                        onClick={() => setActiveComponent("dieta")}>
+                            Agregar dieta
+                        </Button></Grid>
+                        <Grid item><Button style={buttonStyle} variant="contained" color="primary"
+                    onClick={() => setActiveComponent("ejercisio")}>
+                        Agregar ejercisio
+                        </Button></Grid>
+                        <Grid item><Button  style={buttonStyle} variant="contained" color="primary"
+                    onClick={() => setActiveComponent("descanso")}>
+                        Agregar descanso
+                        </Button></Grid>
+                </Grid>                            
+                {activeComponent == "dieta" ? <Dieta update={actualizarCalorias}/> : 
+                activeComponent == "ejercisio" ? <Dieta/> :
+                activeComponent == "descanso" ? <Descanso update={actualizarPuntaje}/>  :                             
+                <ResumenDashboard date={props.date} month={props.month} calorias={calorias} puntos={puntaje}/>}
+            </Grid>            
+        </Grid>
     );
 }
 

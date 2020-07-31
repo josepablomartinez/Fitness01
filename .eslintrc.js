@@ -29,5 +29,6 @@ module.exports = {
     rules: {
         'react/prop-types': ['off'],
         'react/no-unescaped-entities': ['error', { forbid: ['>', '}'] }],
+        'no-unused-vars': ['off']
     },
 };
